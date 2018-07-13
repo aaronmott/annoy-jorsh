@@ -17,10 +17,14 @@ namespace annoyjorsh.Helpers
                 )
             ).AsQueryable();
         private static Random rand = new Random();
-        public static List<InsultPart> getAllInsultParts(){
+
+        public static List<InsultPart> getAllInsultParts()
+        {
             return parts.ToList();
         }
-        public static string getQuickInsult(int totalSyllables = 4, bool plural = false){
+
+        public static string getQuickInsult(int totalSyllables = 4, bool plural = false)
+        {
             var currentSyllableCount = 0;
             var returnString = "";
             var rand = new Random();
@@ -34,6 +38,7 @@ namespace annoyjorsh.Helpers
             }
             return returnString;
         }
+        
         public static T Random<T>(this IQueryable<T> q, Expression<Func<T,bool>> e)
         {
             q  = q.Where(e);
