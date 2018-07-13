@@ -11,11 +11,9 @@ namespace annoyjorsh.Commands
     public class DogFactsCommand : ICommand
     {
         private static IEnumerable<string> dogTriggers = new List<string>();
-        private DiscordSocketClient bot;
         
-        public DogFactsCommand(DiscordSocketClient _bot)
+        public DogFactsCommand()
         {
-            bot = _bot;
             dogTriggers = dogTriggers.Append("dog");
         }
 

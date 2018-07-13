@@ -15,8 +15,6 @@ namespace annoyjorsh.Services
     public class DiscordBot : IDiscordBot
     {
         private IEnumerable<ICommand> commands = new List<ICommand>();
-        private static List<string> dogTriggers = new List<string>() { "dog" };
-        private static List<string> unitTriggers = new List<string>() { "unit" };
         private readonly DiscordSocketClient _client;
 
         public DiscordBot(IConfigurationRoot config)
@@ -28,10 +26,10 @@ namespace annoyjorsh.Services
             _client.StartAsync();
             _client.MessageReceived += MessageReceived;
             commands = commands
-                .Append(new CatFactsCommand(_client))
-                .Append(new DogFactsCommand(_client))
+                .Append(new CatFactsCommand())
+                .Append(new DogFactsCommand())
                 .Append(new OneOnOneCommand(_client))
-                .Append(new InsultCommand(_client));
+                .Append(new InsultCommand());
         }
 
         public async Task MessageReceived(SocketMessage message)

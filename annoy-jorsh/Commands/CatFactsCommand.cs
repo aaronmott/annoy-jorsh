@@ -11,11 +11,9 @@ namespace annoyjorsh.Commands
     public class CatFactsCommand : ICommand
     {
         private static IEnumerable<string> catTriggers = new List<string>();
-        private DiscordSocketClient bot;
 
-        public CatFactsCommand(DiscordSocketClient _bot)
+        public CatFactsCommand()
         {
-            bot = _bot;
             catTriggers = catTriggers.Append("cat");
         }
 
