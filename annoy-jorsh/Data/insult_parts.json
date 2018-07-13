@@ -1,0 +1,98 @@
+[    
+    {
+        "phrase": "bad",
+        "type": "adjective",
+        "syllables": 1,
+        "many": "bads"
+    },
+    {
+        "phrase": "noob",
+        "type": "adjective",
+        "syllables": 1,
+        "many": "noobs"
+    },
+    {
+        "phrase": "trash",
+        "type": "adjective",
+        "syllables": 1,
+        "many": "trashes"
+    },
+    {
+        "phrase": "nerd",
+        "type": "adjective",
+        "syllables": 1,
+        "many": "nerds"
+    },
+    {
+        "phrase": "pub",
+        "type": "noun",
+        "syllables": 1,
+        "many": "pubs"
+    },
+    {
+        "phrase": "srub",
+        "type": "noun",
+        "syllables": 1,
+        "many": "scrubs"
+    },
+    {
+        "phrase": "normie",
+        "type": "noun",
+        "syllables": 1,
+        "many": "normies"
+    },
+    {
+        "phrase": "hipster",
+        "type": "noun",
+        "syllables": 1,
+        "many": "hipsters"
+    },
+    {
+        "phrase": "weak",
+        "type": "adjective",
+        "syllables": 1,
+        "many": "weaks"
+    },
+    {
+        "phrase": "face",
+        "type": "noun",
+        "syllables": 1,
+        "many": "faces"
+    },
+    {
+        "phrase": "butt",
+        "type": "noun",
+        "syllables": 1,
+        "many": "butts"
+    },
+    {
+        "phrase": "hanzo main",
+        "type": "noun",
+        "syllables": 3,
+        "many": "hanzo mains"
+    },
+    {
+        "phrase": "hand soap",
+        "type": "noun",
+        "syllables": 2,
+        "many": "hand soaps"
+    },
+    {
+        "phrase": "trash can",
+        "type": "noun",
+        "syllables": 2,
+        "many": "trash cans"
+    },
+    {
+        "phrase": "rando",
+        "type": "noun",
+        "syllables": 1,
+        "many": "randos"
+    },
+    {
+        "phrase": "no skin",
+        "type": "adjective",
+        "syllables": 2,
+        "many": "no skins"
+    }
+]

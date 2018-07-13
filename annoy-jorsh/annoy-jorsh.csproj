@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Flurl" Version="2.7.1" />
+    <PackageReference Include="Flurl.Http" Version="2.3.1" />
+    <PackageReference Include="Discord.Net" Version="1.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.1.1" />
+    <PackageReference Include="Quartz" Version="3.0.5" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="EmailExtension.cs" />
+    <Compile Remove="EmailExtension.cs" />
+    <Compile Remove="Services\Scheduler.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Jobs\" />
+    <Folder Include="Services\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Interfaces\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="quartz.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>
