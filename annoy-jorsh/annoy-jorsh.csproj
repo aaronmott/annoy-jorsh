@@ -6,12 +6,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Discord.Net.Commands" Version="1.0.2" />
     <PackageReference Include="Flurl" Version="2.7.1" />
     <PackageReference Include="Flurl.Http" Version="2.3.1" />
     <PackageReference Include="Discord.Net" Version="1.0.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="2.1.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.1.1" />
     <PackageReference Include="Quartz" Version="3.0.5" />
+    <PackageReference Include="TweetinviAPI" Version="3.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="EmailExtension.cs" />
@@ -26,6 +29,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Update="quartz.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

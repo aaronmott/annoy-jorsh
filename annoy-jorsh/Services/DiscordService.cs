@@ -9,31 +9,39 @@ using annoyjorsh.Interfaces;
 using Quartz;
 using Microsoft.Extensions.Configuration;
 using annoyjorsh.Commands;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace annoyjorsh.Services
 {
-    public class DiscordBot : IDiscordBot
+    public static class DiscordService
     {
-        private IEnumerable<ICommand> commands = new List<ICommand>();
-        private readonly DiscordSocketClient _client;
+        private static IEnumerable<ICommand> commands = new List<ICommand>();
 
-        public DiscordBot(IConfigurationRoot config)
+        public static IServiceCollection AddDiscord(this IServiceCollection services)
         {
-            _client = new DiscordSocketClient();
-            _client.Log += Log;
-
-            _client.LoginAsync(TokenType.Bot, config["DiscordToken"]);
-            _client.StartAsync();
-            _client.MessageReceived += MessageReceived;
+            services.AddTransient(CreateDiscordProvider);
+            return services;
+        }
+        private static DiscordSocketClient CreateDiscordProvider(IServiceProvider serviceProvider)
+        {
+            var client = new DiscordSocketClient();
+            client.Log += Log;
+            client.MessageReceived += MessageReceived;
             commands = commands
                 .Append(new CatFactsCommand())
                 .Append(new DogFactsCommand())
-                .Append(new OneOnOneCommand(_client))
+                .Append(new OneOnOneCommand(client))
                 .Append(new InsultCommand());
+            return client;
         }
-
-        public async Task MessageReceived(SocketMessage message)
+        public static void StartDiscord(this DiscordSocketClient client, string token)
+        {            
+            client.LoginAsync(TokenType.Bot, token);
+            client.StartAsync();
+        }
+        private static async Task MessageReceived(SocketMessage message)
         {
+            Console.WriteLine(message.Channel.Id + ": " + message.Channel.Name);
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Write(
                 message.Author.ToString() + " " +
@@ -50,7 +58,9 @@ namespace annoyjorsh.Services
             var commandTasks = commands.AsParallel().Where(c => c.Match(message)).Select(async c => await c.Execute(message));
             await Task.WhenAll(commandTasks);
         }
-        public Task Log(LogMessage msg)
+
+
+        private static Task Log(LogMessage msg)
         {
             Console.WriteLine(msg.ToString());
             return Task.CompletedTask;
