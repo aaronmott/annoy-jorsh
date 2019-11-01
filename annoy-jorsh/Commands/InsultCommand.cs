@@ -8,7 +8,7 @@ using Discord.WebSocket;
 namespace annoyjorsh.Commands
 {
     public class InsultCommand : ICommand
-    {        
+    {
         public InsultCommand()
         {
         }

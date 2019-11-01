@@ -21,17 +21,17 @@ namespace annoyjorsh.Services
         {
             _client = new DiscordSocketClient();
             _client.Log += Log;
-
             _client.LoginAsync(TokenType.Bot, config["DiscordToken"]);
             _client.StartAsync();
             _client.MessageReceived += MessageReceived;
             commands = commands
                 .Append(new CatFactsCommand())
                 .Append(new DogFactsCommand())
-                .Append(new OneOnOneCommand(_client))
+                //.Append(new OneOnOneCommand(_client))
+                .Append(new WheelCommand())
+                .Append(new DiceCommand())
                 .Append(new InsultCommand());
         }
-
         public async Task MessageReceived(SocketMessage message)
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
@@ -40,12 +40,16 @@ namespace annoyjorsh.Services
                 message.Timestamp.ToLocalTime().ToString("MM/dd/yyyy hh:mmtt") + ": "
             );
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine(                                
+            Console.WriteLine(
                 message.Content
             );
             if (message.Author.IsBot || message.Content.IndexOf("!ignore", StringComparison.OrdinalIgnoreCase) != -1)
             {
                 return;
+            }
+            if (message.Content.StartsWith("!proxy"))
+            {
+                await _client.GetGuild(270933643025711104).GetTextChannel(464896563651543080).SendMessageAsync(message.Content.Replace("!proxy ", ""));
             }
             var commandTasks = commands.AsParallel().Where(c => c.Match(message)).Select(async c => await c.Execute(message));
             await Task.WhenAll(commandTasks);

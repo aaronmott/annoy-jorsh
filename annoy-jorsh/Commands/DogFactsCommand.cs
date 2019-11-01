@@ -11,7 +11,6 @@ namespace annoyjorsh.Commands
     public class DogFactsCommand : ICommand
     {
         private static IEnumerable<string> dogTriggers = new List<string>();
-        
         public DogFactsCommand()
         {
             dogTriggers = dogTriggers.Append("dog");

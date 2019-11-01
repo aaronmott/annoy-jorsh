@@ -10,7 +10,6 @@ namespace annoyjorsh.Commands
     public class OneOnOneCommand : ICommand
     {
         private DiscordSocketClient bot;
-        
         public OneOnOneCommand(DiscordSocketClient _bot)
         {
             bot = _bot;
