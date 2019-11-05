@@ -1,5 +1,4 @@
-[    
-    {
+[{
         "phrase": "bad",
         "type": "adjective",
         "syllables": 1,
@@ -30,7 +29,7 @@
         "many": "pubs"
     },
     {
-        "phrase": "srub",
+        "phrase": "scrub",
         "type": "noun",
         "syllables": 1,
         "many": "scrubs"
@@ -94,5 +93,35 @@
         "type": "adjective",
         "syllables": 2,
         "many": "no skins"
+    },
+    {
+        "phrase": "plant",
+        "type": "noun",
+        "syllables": 1,
+        "many": "plants"
+    },
+    {
+        "phrase": "baddie",
+        "type": "noun",
+        "syllables": 2,
+        "many": "baddies"
+    },
+    {
+        "phrase": "lame",
+        "type": "ajective",
+        "syllables": 1,
+        "many": "lames"
+    },
+    {
+        "phrase": "fish",
+        "type": "noun",
+        "syllables": 1,
+        "many": "fishes"
+    },
+    {
+        "phrase": "non baron",
+        "type": "noun",
+        "syllables": 3,
+        "many": "non barons"
     }
 ]

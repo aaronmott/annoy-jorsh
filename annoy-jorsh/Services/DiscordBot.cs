@@ -30,6 +30,7 @@ namespace annoyjorsh.Services
                 //.Append(new OneOnOneCommand(_client))
                 .Append(new WheelCommand())
                 .Append(new DiceCommand())
+                .Append(new HunterDiceCommand())
                 .Append(new InsultCommand());
         }
         public async Task MessageReceived(SocketMessage message)

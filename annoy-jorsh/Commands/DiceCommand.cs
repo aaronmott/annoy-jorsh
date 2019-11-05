@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using annoyjorsh.Interfaces;
 using Discord;
@@ -28,34 +29,42 @@ namespace annoyjorsh.Commands
             }
             else if (diceSet)
             {
-                var diceParts = rollContent.Split("d");
-                if (diceParts.Length == 2)
+                var match = Regex.Match(rollContent, @"^(\d{1,3})\s?d\s?(\d{1,3})\s?\+?\s?(\d{1,2})?$");
+                if (!match.Success)
                 {
-                    int diceCount;
-                    bool parsedCount = Int32.TryParse(diceParts[0], out diceCount);
-                    int diceType;
-                    bool parsedType = Int32.TryParse(diceParts[1], out diceType);
-                    if (parsedCount && parsedType && diceCount > 0 && diceType > 0)
-                    {
-                        if (diceCount > 50)
-                        {
-                            await message.Channel.SendMessageAsync(MentionUtils.MentionUser(message.Author.Id) + " my hands aren't big enough to roll over 50 dice");
-                            return;
-                        }
-                        if (diceType > 120)
-                        {
-                            await message.Channel.SendMessageAsync(MentionUtils.MentionUser(message.Author.Id) + " where do you get your dice? nothing over a d120 please");
-                            return;
-                        }
-                        var rolls = new int[diceCount];
-                        for (int diceRoll = 0; diceRoll < diceCount; diceRoll++)
-                        {
-                            rolls[diceRoll] = rnd.Next(1, Math.Abs(diceType));
-                        }
-                        await message.Channel.SendMessageAsync(MentionUtils.MentionUser(message.Author.Id) + " rolled " + string.Join(", ", rolls));
-                        return;
-                    }
+                    return;
                 }
+                var diceCount = int.Parse(match.Groups[1].Value);
+                var diceType = int.Parse(match.Groups[2].Value);
+                var modifier = match.Groups[3].Success ? int.Parse(match.Groups[3].Value) : 0;
+                if (diceCount > 50)
+                {
+                    await message.Channel.SendMessageAsync(MentionUtils.MentionUser(message.Author.Id) + " my hands aren't big enough to roll over 50 dice");
+                    return;
+                }
+                if (diceType > 120)
+                {
+                    await message.Channel.SendMessageAsync(MentionUtils.MentionUser(message.Author.Id) + " where do you get your dice? nothing over a d120 please");
+                    return;
+                }
+                var rolls = new int[diceCount];
+                for (int diceRoll = 0; diceRoll < diceCount; diceRoll++)
+                {
+                    rolls[diceRoll] = rnd.Next(1, Math.Abs(diceType));
+                }
+                string reply = " rolled " + string.Join(", ", rolls);
+                int total = rolls.Sum();
+                reply += " totaling ";
+                if (modifier > 0)
+                {
+                    total += modifier;
+                    reply += total + " (with modifier)";
+                }
+                else
+                {
+                    reply += total;
+                }
+                await message.Channel.SendMessageAsync(MentionUtils.MentionUser(message.Author.Id) + reply);
             }
         }
 
