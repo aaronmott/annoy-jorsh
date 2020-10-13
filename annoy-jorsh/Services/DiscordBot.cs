@@ -6,7 +6,6 @@ using Discord;
 using Discord.WebSocket;
 using annoyjorsh.Helpers;
 using annoyjorsh.Interfaces;
-using Quartz;
 using Microsoft.Extensions.Configuration;
 using annoyjorsh.Commands;
 
@@ -31,7 +30,8 @@ namespace annoyjorsh.Services
                 .Append(new WheelCommand())
                 .Append(new DiceCommand())
                 .Append(new HunterDiceCommand())
-                .Append(new InsultCommand());
+                .Append(new InsultCommand())
+                .Append(new ShoutCommand());
         }
         public async Task MessageReceived(SocketMessage message)
         {
@@ -44,6 +44,7 @@ namespace annoyjorsh.Services
             Console.WriteLine(
                 message.Content
             );
+            //TODO: insert selling all message/user data to china
             if (message.Author.IsBot || message.Content.IndexOf("!ignore", StringComparison.OrdinalIgnoreCase) != -1)
             {
                 return;
